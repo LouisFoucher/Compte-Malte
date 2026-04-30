@@ -31,6 +31,7 @@ document.write('<link rel="manifest" href="'+URL.createObjectURL(mBlob)+'">');
     --muted: rgba(232,228,220,0.5);
     --danger: #eb5757;
     --success: #27ae60;
+    --green: #6fcf97;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -43,7 +44,6 @@ document.write('<link rel="manifest" href="'+URL.createObjectURL(mBlob)+'">');
     overflow-x: hidden;
   }
 
-  /* Background waves */
   body::before {
     content: '';
     position: fixed;
@@ -55,364 +55,160 @@ document.write('<link rel="manifest" href="'+URL.createObjectURL(mBlob)+'">');
     z-index: 0;
   }
 
-  .app { position: relative; z-index: 1; max-width: 430px; margin: 0 auto; padding-bottom: 80px; }
+  .app { position: relative; z-index: 1; max-width: 430px; margin: 0 auto; padding-bottom: 100px; }
 
   /* Header */
-  header {
-    padding: 52px 20px 20px;
-    text-align: center;
-  }
-
+  header { padding: 52px 20px 20px; text-align: center; }
   .flag { font-size: 2.4rem; margin-bottom: 4px; display: block; }
+  h1 { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--white); letter-spacing: -0.02em; line-height: 1.1; }
+  .subtitle { font-size: 0.8rem; color: var(--muted); margin-top: 4px; letter-spacing: 0.08em; text-transform: uppercase; }
 
-  h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2rem;
-    color: var(--white);
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-  }
-
-  .subtitle {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: 4px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  /* Summary cards */
-  .summary {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    padding: 16px 16px 0;
-  }
-
-  .stat-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 14px 16px;
-    backdrop-filter: blur(10px);
-  }
-
+  /* Summary */
+  .summary { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 16px 16px 0; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 14px 16px; backdrop-filter: blur(10px); }
   .stat-card.full { grid-column: 1 / -1; }
-
-  .stat-label {
-    font-size: 0.7rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-
-  .stat-value {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.6rem;
-    color: var(--white);
-  }
-
+  .stat-label { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+  .stat-value { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--white); }
   .stat-value.debit { color: var(--coral); }
-  .stat-value.credit { color: #6fcf97; }
+  .stat-value.credit { color: var(--green); }
   .stat-value.solde { color: var(--sea); }
-
   .stat-count { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
 
-  /* Tab bar */
-  .tabs {
-    display: flex;
-    gap: 6px;
-    padding: 16px 16px 0;
-  }
-
-  .tab {
-    flex: 1;
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--muted);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-align: center;
-  }
-
-  .tab.active {
-    background: var(--sky);
-    border-color: var(--sky);
-    color: white;
-  }
+  /* Tabs */
+  .tabs { display: flex; gap: 6px; padding: 16px 16px 0; }
+  .tab { flex: 1; padding: 10px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500; cursor: pointer; transition: all 0.2s; text-align: center; }
+  .tab.active { background: var(--sky); border-color: var(--sky); color: white; }
 
   /* Form */
   .section { padding: 14px 16px 0; }
-
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 20px;
-    backdrop-filter: blur(10px);
-  }
-
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 20px; backdrop-filter: blur(10px); }
   .field { margin-bottom: 14px; }
   .field:last-child { margin-bottom: 0; }
-
-  label {
-    display: block;
-    font-size: 0.72rem;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-    font-weight: 500;
-  }
-
-  input, select, textarea {
-    width: 100%;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 14px;
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.2s, background 0.2s;
-    -webkit-appearance: none;
-  }
-
-  input:focus, select:focus, textarea:focus {
-    border-color: var(--sky);
-    background: rgba(47,128,237,0.1);
-  }
-
+  label { display: block; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; font-weight: 500; }
+  input, select, textarea { width: 100%; background: rgba(255,255,255,0.07); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 1rem; outline: none; transition: border-color 0.2s, background 0.2s; -webkit-appearance: none; }
+  input:focus, select:focus, textarea:focus { border-color: var(--sky); background: rgba(47,128,237,0.1); }
   select option { background: #1a3a6b; color: white; }
-
   .amount-input-wrap { position: relative; }
   .amount-input-wrap input { padding-right: 40px; font-size: 1.2rem; font-weight: 500; }
-  .currency-symbol {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--muted);
-    font-size: 1rem;
-  }
+  .currency-symbol { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 1rem; }
 
   /* Type toggle */
-  .type-toggle {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-
-  .type-btn {
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--muted);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-align: center;
-  }
-
+  .type-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .type-btn { padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s; text-align: center; }
   .type-btn.debit.active { background: rgba(242,153,74,0.2); border-color: var(--coral); color: var(--coral); }
-  .type-btn.credit.active { background: rgba(111,207,151,0.2); border-color: #6fcf97; color: #6fcf97; }
+  .type-btn.credit.active { background: rgba(111,207,151,0.2); border-color: var(--green); color: var(--green); }
 
   /* Submit button */
-  .btn-add {
+  .btn-add { width: 100%; padding: 16px; border-radius: 14px; border: none; background: linear-gradient(135deg, var(--sky), #1a6fd4); color: white; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 14px; letter-spacing: 0.02em; transition: opacity 0.2s, transform 0.1s; box-shadow: 0 4px 20px rgba(47,128,237,0.4); }
+  .btn-add:active { opacity: 0.85; transform: scale(0.98); }
+
+  /* List */
+  .list-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .list-title { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: var(--white); }
+  .empty-state { text-align: center; padding: 40px 20px; color: var(--muted); }
+  .empty-icon { font-size: 2.5rem; margin-bottom: 10px; }
+  .expense-item { display: flex; align-items: center; gap: 12px; padding: 14px; border-bottom: 1px solid var(--border); animation: slideIn 0.25s ease; }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+  .expense-item:last-child { border-bottom: none; }
+  .expense-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  .expense-icon.debit { background: rgba(242,153,74,0.15); }
+  .expense-icon.credit { background: rgba(111,207,151,0.15); }
+  .expense-info { flex: 1; min-width: 0; }
+  .expense-lieu { font-size: 0.95rem; font-weight: 500; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .expense-meta { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+  .expense-amount { font-family: 'DM Serif Display', serif; font-size: 1.05rem; flex-shrink: 0; }
+  .expense-amount.debit { color: var(--coral); }
+  .expense-amount.credit { color: var(--green); }
+  .delete-btn { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1rem; padding: 4px; transition: color 0.2s; flex-shrink: 0; }
+  .delete-btn:active { color: var(--danger); }
+
+  /* Filter bar */
+  .filter-bar { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .filter-chip { padding: 5px 12px; border-radius: 100px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: 0.75rem; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .filter-chip.active { background: rgba(47,128,237,0.2); border-color: var(--sky); color: var(--sea); }
+  .date-group-label { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 14px 4px; }
+
+  /* ── BARRE DE SAUVEGARDE PERMANENTE ── */
+  .save-bar {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
-    padding: 16px;
-    border-radius: 14px;
+    max-width: 430px;
+    z-index: 50;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+    background: linear-gradient(to top, rgba(10,22,40,0.98) 60%, rgba(10,22,40,0) 100%);
+    backdrop-filter: blur(6px);
+  }
+
+  .save-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 20px;
+    border-radius: 16px;
     border: none;
-    background: linear-gradient(135deg, var(--sky), #1a6fd4);
+    background: linear-gradient(135deg, #1db954, #0f8f3c);
     color: white;
     font-family: 'DM Sans', sans-serif;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 14px;
     letter-spacing: 0.02em;
-    transition: opacity 0.2s, transform 0.1s;
-    box-shadow: 0 4px 20px rgba(47,128,237,0.4);
-  }
-
-  .btn-add:active { opacity: 0.85; transform: scale(0.98); }
-
-  /* List */
-  .list-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-  }
-
-  .list-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.1rem;
-    color: var(--white);
-  }
-
-  .export-btn {
-    padding: 7px 14px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--sea);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .export-btn:active { background: rgba(86,204,242,0.1); }
-
-  .empty-state {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--muted);
-  }
-
-  .empty-icon { font-size: 2.5rem; margin-bottom: 10px; }
-
-  .expense-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px;
-    border-bottom: 1px solid var(--border);
-    animation: slideIn 0.25s ease;
-  }
-
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateY(-8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .expense-item:last-child { border-bottom: none; }
-
-  .expense-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-  }
-
-  .expense-icon.debit { background: rgba(242,153,74,0.15); }
-  .expense-icon.credit { background: rgba(111,207,151,0.15); }
-
-  .expense-info { flex: 1; min-width: 0; }
-
-  .expense-lieu {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--white);
-    white-space: nowrap;
+    box-shadow: 0 4px 24px rgba(29,185,84,0.45), 0 0 0 1px rgba(29,185,84,0.3);
+    transition: opacity 0.2s, transform 0.1s, box-shadow 0.2s;
+    position: relative;
     overflow: hidden;
-    text-overflow: ellipsis;
   }
 
-  .expense-meta {
-    font-size: 0.72rem;
-    color: var(--muted);
-    margin-top: 2px;
+  .save-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+    pointer-events: none;
   }
 
-  .expense-amount {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.05rem;
+  .save-btn:active {
+    opacity: 0.88;
+    transform: scale(0.97);
+    box-shadow: 0 2px 12px rgba(29,185,84,0.3);
+  }
+
+  .save-btn .save-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+  .save-btn .save-label { display: flex; flex-direction: column; align-items: flex-start; }
+  .save-btn .save-label-main { font-size: 1rem; font-weight: 600; line-height: 1.2; }
+  .save-btn .save-label-sub { font-size: 0.72rem; font-weight: 400; opacity: 0.8; letter-spacing: 0.03em; }
+
+  .save-btn .save-count-badge {
+    margin-left: auto;
+    background: rgba(255,255,255,0.2);
+    border-radius: 100px;
+    padding: 3px 10px;
+    font-size: 0.78rem;
+    font-weight: 600;
     flex-shrink: 0;
   }
 
-  .expense-amount.debit { color: var(--coral); }
-  .expense-amount.credit { color: #6fcf97; }
-
-  .delete-btn {
-    background: none;
-    border: none;
-    color: var(--muted);
-    cursor: pointer;
-    font-size: 1rem;
-    padding: 4px;
-    transition: color 0.2s;
-    flex-shrink: 0;
+  /* Pulse animation quand nouvelles dépenses non sauvegardées */
+  .save-btn.has-new {
+    animation: savePulse 2s ease-in-out infinite;
   }
 
-  .delete-btn:active { color: var(--danger); }
+  @keyframes savePulse {
+    0%, 100% { box-shadow: 0 4px 24px rgba(29,185,84,0.45), 0 0 0 1px rgba(29,185,84,0.3); }
+    50% { box-shadow: 0 4px 32px rgba(29,185,84,0.7), 0 0 0 3px rgba(29,185,84,0.25); }
+  }
 
   /* Toast */
-  .toast {
-    position: fixed;
-    bottom: 90px;
-    left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    background: rgba(39,174,96,0.95);
-    color: white;
-    padding: 12px 20px;
-    border-radius: 100px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    opacity: 0;
-    transition: all 0.3s;
-    z-index: 100;
-    white-space: nowrap;
-    backdrop-filter: blur(10px);
-  }
-
+  .toast { position: fixed; bottom: 110px; left: 50%; transform: translateX(-50%) translateY(20px); background: rgba(39,174,96,0.95); color: white; padding: 12px 20px; border-radius: 100px; font-size: 0.85rem; font-weight: 500; opacity: 0; transition: all 0.3s; z-index: 100; white-space: nowrap; backdrop-filter: blur(10px); }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-  /* Bottom nav placeholder */
-  .bottom-safe { height: env(safe-area-inset-bottom, 16px); }
-
-  /* Hidden */
   .hidden { display: none !important; }
-
-  /* Filter bar */
-  .filter-bar {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin-bottom: 12px;
-  }
-
-  .filter-chip {
-    padding: 5px 12px;
-    border-radius: 100px;
-    border: 1px solid var(--border);
-    background: transparent;
-    color: var(--muted);
-    font-size: 0.75rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .filter-chip.active {
-    background: rgba(47,128,237,0.2);
-    border-color: var(--sky);
-    color: var(--sea);
-  }
-
-  .date-group-label {
-    font-size: 0.7rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 10px 14px 4px;
-  }
 </style>
 </head>
 <body>
@@ -457,7 +253,6 @@ document.write('<link rel="manifest" href="'+URL.createObjectURL(mBlob)+'">');
           <button class="type-btn credit" id="btn-credit" onclick="setType('Crédit')">↙ Crédit</button>
         </div>
       </div>
-
       <div class="field">
         <label>Montant</label>
         <div class="amount-input-wrap">
@@ -465,12 +260,10 @@ document.write('<link rel="manifest" href="'+URL.createObjectURL(mBlob)+'">');
           <span class="currency-symbol">€</span>
         </div>
       </div>
-
       <div class="field">
         <label>Lieu / Magasin</label>
         <input type="text" id="lieu" placeholder="ex: Lidl, Restaurant La Valette…">
       </div>
-
       <div class="field">
         <label>Catégorie</label>
         <select id="categorie">
@@ -484,17 +277,14 @@ document.write('<link rel="manifest" href="'+URL.createObjectURL(mBlob)+'">');
           <option value="Autre">📦 Autre</option>
         </select>
       </div>
-
       <div class="field">
         <label>Date</label>
         <input type="date" id="date">
       </div>
-
       <div class="field">
         <label>Note (optionnel)</label>
         <input type="text" id="note" placeholder="Détails, remarque…">
       </div>
-
       <button class="btn-add" onclick="addExpense()">Ajouter la dépense</button>
     </div>
   </div>
@@ -503,15 +293,12 @@ document.write('<link rel="manifest" href="'+URL.createObjectURL(mBlob)+'">');
   <div id="tab-list" class="section hidden">
     <div class="list-header">
       <span class="list-title">Historique</span>
-      <button class="export-btn" onclick="exportCSV()">⬇ Export Excel</button>
     </div>
-
     <div class="filter-bar" id="filterBar">
       <button class="filter-chip active" onclick="setFilter('Tout')">Tout</button>
       <button class="filter-chip" onclick="setFilter('Débit')">Débits</button>
       <button class="filter-chip" onclick="setFilter('Crédit')">Crédits</button>
     </div>
-
     <div class="card" id="expenseList">
       <div class="empty-state">
         <div class="empty-icon">🌊</div>
@@ -519,27 +306,35 @@ document.write('<link rel="manifest" href="'+URL.createObjectURL(mBlob)+'">');
       </div>
     </div>
   </div>
+</div>
 
-  <div class="bottom-safe"></div>
+<!-- ── BARRE DE SAUVEGARDE PERMANENTE ── -->
+<div class="save-bar">
+  <button class="save-btn" id="saveBtn" onclick="exportExcel()">
+    <span class="save-icon">📥</span>
+    <span class="save-label">
+      <span class="save-label-main">Sauvegarder en Excel</span>
+      <span class="save-label-sub" id="saveSubLabel">Télécharger le fichier .xlsx</span>
+    </span>
+    <span class="save-count-badge" id="saveBadge">0</span>
+  </button>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-  // ── State ──────────────────────────────────────────────────────────────────
   let expenses = JSON.parse(localStorage.getItem('malta_expenses') || '[]');
   let currentType = 'Débit';
   let currentFilter = 'Tout';
 
-  // ── Init ───────────────────────────────────────────────────────────────────
   const today = new Date();
   document.getElementById('date').value = today.toISOString().split('T')[0];
   document.getElementById('headerDate').textContent =
     today.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
   updateSummary();
+  updateSaveBar();
 
-  // ── Tabs ───────────────────────────────────────────────────────────────────
   function showTab(tab) {
     document.getElementById('tab-add').classList.toggle('hidden', tab !== 'add');
     document.getElementById('tab-list').classList.toggle('hidden', tab !== 'list');
@@ -549,21 +344,18 @@ document.write('<link rel="manifest" href="'+URL.createObjectURL(mBlob)+'">');
     if (tab === 'list') renderList();
   }
 
-  // ── Type toggle ────────────────────────────────────────────────────────────
   function setType(type) {
     currentType = type;
     document.getElementById('btn-debit').classList.toggle('active', type === 'Débit');
     document.getElementById('btn-credit').classList.toggle('active', type === 'Crédit');
   }
 
-  // ── Category icons ─────────────────────────────────────────────────────────
   const catIcons = {
     'Alimentation': '🛒', 'Restaurant': '🍽️', 'Transport': '🚌',
     'Hébergement': '🏨', 'Loisirs': '🎉', 'Shopping': '🛍️',
     'Santé': '💊', 'Autre': '📦'
   };
 
-  // ── Add expense ────────────────────────────────────────────────────────────
   function addExpense() {
     const montant = parseFloat(document.getElementById('montant').value);
     const lieu = document.getElementById('lieu').value.trim();
@@ -574,21 +366,12 @@ document.write('<link rel="manifest" href="'+URL.createObjectURL(mBlob)+'">');
     if (!montant || montant <= 0) { showToast('⚠️ Entre un montant valide', '#eb5757'); return; }
     if (!lieu) { showToast('⚠️ Entre un lieu', '#eb5757'); return; }
 
-    const expense = {
-      id: Date.now(),
-      type: currentType,
-      montant,
-      lieu,
-      categorie,
-      date,
-      note
-    };
-
-    expenses.unshift(expense);
+    expenses.unshift({ id: Date.now(), type: currentType, montant, lieu, categorie, date, note });
     save();
     updateSummary();
+    updateSaveBar();
     resetForm();
-    showToast('✓ Dépense ajoutée !');
+    showToast('✓ Dépense ajoutée ! Pense à sauvegarder 💾');
   }
 
   function resetForm() {
@@ -599,22 +382,20 @@ document.write('<link rel="manifest" href="'+URL.createObjectURL(mBlob)+'">');
     setType('Débit');
   }
 
-  // ── Delete ─────────────────────────────────────────────────────────────────
   function deleteExpense(id) {
     expenses = expenses.filter(e => e.id !== id);
     save();
     updateSummary();
+    updateSaveBar();
     renderList();
     showToast('🗑 Supprimée', '#f2994a');
   }
 
-  // ── Summary ────────────────────────────────────────────────────────────────
   function updateSummary() {
     const debits = expenses.filter(e => e.type === 'Débit');
     const credits = expenses.filter(e => e.type === 'Crédit');
     const totalD = debits.reduce((s, e) => s + e.montant, 0);
     const totalC = credits.reduce((s, e) => s + e.montant, 0);
-
     document.getElementById('totalDebit').textContent = fmt(totalD);
     document.getElementById('totalCredit').textContent = fmt(totalC);
     document.getElementById('solde').textContent = fmt(totalC - totalD);
@@ -622,7 +403,23 @@ document.write('<link rel="manifest" href="'+URL.createObjectURL(mBlob)+'">');
     document.getElementById('countCredit').textContent = credits.length + ' transaction' + (credits.length !== 1 ? 's' : '');
   }
 
-  // ── Render list ────────────────────────────────────────────────────────────
+  function updateSaveBar() {
+    const n = expenses.length;
+    const badge = document.getElementById('saveBadge');
+    const sub = document.getElementById('saveSubLabel');
+    const btn = document.getElementById('saveBtn');
+
+    badge.textContent = n;
+
+    if (n === 0) {
+      sub.textContent = 'Aucune dépense à exporter';
+      btn.classList.remove('has-new');
+    } else {
+      sub.textContent = n + ' dépense' + (n > 1 ? 's' : '') + ' · Télécharger .xlsx';
+      btn.classList.add('has-new');
+    }
+  }
+
   function setFilter(f) {
     currentFilter = f;
     document.querySelectorAll('.filter-chip').forEach(c => {
@@ -640,7 +437,6 @@ document.write('<link rel="manifest" href="'+URL.createObjectURL(mBlob)+'">');
       return;
     }
 
-    // Group by date
     const groups = {};
     filtered.forEach(e => {
       const d = formatDate(e.date);
@@ -664,51 +460,31 @@ document.write('<link rel="manifest" href="'+URL.createObjectURL(mBlob)+'">');
     `).join('');
   }
 
-  // ── Export XLSX ────────────────────────────────────────────────────────────
-  function exportCSV() {
-    if (!expenses.length) { showToast('Aucune donnée à exporter', '#eb5757'); return; }
+  function exportExcel() {
+    if (!expenses.length) { showToast('Aucune dépense à exporter', '#eb5757'); return; }
 
     const wb = XLSX.utils.book_new();
 
-    // ── Feuille dépenses ──
-    const rows = [
-      ['Date', 'Lieu / Magasin', 'Catégorie', 'Débit (€)', 'Crédit (€)', 'Note']
-    ];
+    // Feuille dépenses
+    const rows = [['Date', 'Lieu / Magasin', 'Catégorie', 'Type', 'Débit (€)', 'Crédit (€)', 'Note']];
     expenses.forEach(e => {
       rows.push([
-        e.date,
-        e.lieu,
-        e.categorie,
+        e.date, e.lieu, e.categorie, e.type,
         e.type === 'Débit'  ? e.montant : '',
         e.type === 'Crédit' ? e.montant : '',
         e.note || ''
       ]);
     });
-
-    // Ligne totaux
     const n = expenses.length;
     rows.push([]);
-    rows.push([
-      'TOTAL', '', '',
-      { f: `SUM(D2:D${n+1})` },
-      { f: `SUM(E2:E${n+1})` },
-      ''
-    ]);
-    rows.push([
-      'SOLDE NET', '', '', '', { f: `E${n+3}-D${n+3}` }, ''
-    ]);
+    rows.push(['TOTAL', '', '', '', { f: `SUM(E2:E${n+1})` }, { f: `SUM(F2:F${n+1})` }, '']);
+    rows.push(['SOLDE NET', '', '', '', '', { f: `F${n+3}-E${n+3}` }, '']);
 
     const ws = XLSX.utils.aoa_to_sheet(rows);
-
-    // Largeurs colonnes
-    ws['!cols'] = [
-      { wch: 12 }, { wch: 26 }, { wch: 16 },
-      { wch: 12 }, { wch: 12 }, { wch: 24 }
-    ];
-
+    ws['!cols'] = [{ wch: 12 }, { wch: 26 }, { wch: 16 }, { wch: 10 }, { wch: 12 }, { wch: 12 }, { wch: 24 }];
     XLSX.utils.book_append_sheet(wb, ws, 'Dépenses Malta');
 
-    // ── Feuille stats par catégorie ──
+    // Feuille stats par catégorie
     const cats = ['Alimentation','Restaurant','Transport','Hébergement','Loisirs','Shopping','Santé','Autre'];
     const statsRows = [['Catégorie', 'Nb', 'Total Débits (€)', 'Total Crédits (€)']];
     cats.forEach(cat => {
@@ -723,10 +499,14 @@ document.write('<link rel="manifest" href="'+URL.createObjectURL(mBlob)+'">');
 
     const date = new Date().toISOString().split('T')[0];
     XLSX.writeFile(wb, `malta_depenses_${date}.xlsx`);
-    showToast('✓ Excel exporté !');
+
+    // Marquer comme sauvegardé (animation stop temporaire)
+    const btn = document.getElementById('saveBtn');
+    btn.classList.remove('has-new');
+    showToast('✅ Excel sauvegardé dans Téléchargements !');
+    setTimeout(updateSaveBar, 3000);
   }
 
-  // ── Helpers ────────────────────────────────────────────────────────────────
   function save() { localStorage.setItem('malta_expenses', JSON.stringify(expenses)); }
 
   function fmt(n) {
@@ -753,13 +533,12 @@ document.write('<link rel="manifest" href="'+URL.createObjectURL(mBlob)+'">');
     t.style.background = color + 'f0';
     t.classList.add('show');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
   }
 
-  // ── Service Worker inline ──────────────────────────────────────────────────
   if ('serviceWorker' in navigator) {
     const swCode = `
-      const CACHE = 'malta-v1';
+      const CACHE = 'malta-v2';
       self.addEventListener('install', e => {
         e.waitUntil(caches.open(CACHE).then(c => c.addAll(['./'])).catch(()=>{}));
         self.skipWaiting();
@@ -780,8 +559,7 @@ document.write('<link rel="manifest" href="'+URL.createObjectURL(mBlob)+'">');
       });
     `;
     const swBlob = new Blob([swCode], {type: 'application/javascript'});
-    const swUrl = URL.createObjectURL(swBlob);
-    navigator.serviceWorker.register(swUrl).catch(() => {});
+    navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(() => {});
   }
 </script>
 </body>
